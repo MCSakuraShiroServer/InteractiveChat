@@ -20,6 +20,8 @@
 
 package com.loohp.interactivechat.main;
 
+import com.loohp.interactivechat.main.Main;
+import com.loohp.interactivechat.InteractiveChat;
 import com.loohp.interactivechat.updater.Version;
 import com.loohp.interactivechat.utils.FileUtils;
 import com.loohp.interactivechat.utils.HTTPRequestUtils;
@@ -52,20 +54,20 @@ public class CMLMain {
             String pluginName = pluginYaml.getString("name");
             String version = pluginYaml.getString("version");
 
-            System.out.println("Starting " + pluginName + " v" + version + " Tools...");
-            System.out.println();
+            InteractiveChat.log("Starting " + pluginName + " v" + version + " Tools...");
+            InteractiveChat.log("");
             main: while (true) {
-                System.out.println("You are running " + pluginName + " v" + version);
-                System.out.println();
-                System.out.println("Links:");
-                System.out.println("SpigotMC: \"https://www.spigotmc.org/resources/75870/\"");
-                System.out.println("GitHub: \"https://github.com/LOOHP/InteractiveChat\"");
-                System.out.println("Discord: \"https://loohpjames.com/dev-discord\"");
-                System.out.println("Build Server: \"https://ci.loohpjames.com\"");
-                System.out.println();
-                System.out.println("Select one of the tools by typing in their corresponding number");
+            	InteractiveChat.log("You are running " + pluginName + " v" + version);
+            	InteractiveChat.log("");
+            	InteractiveChat.log("Links:");
+            	InteractiveChat.log("SpigotMC: \"https://www.spigotmc.org/resources/75870/\"");
+            	InteractiveChat.log("GitHub: \"https://github.com/LOOHP/InteractiveChat\"");
+            	InteractiveChat.log("Discord: \"https://loohpjames.com/dev-discord\"");
+            	InteractiveChat.log("Build Server: \"https://ci.loohpjames.com\"");
+            	InteractiveChat.log("");
+            	InteractiveChat.log("Select one of the tools by typing in their corresponding number");
 
-                System.out.println("1. Check for Updates   2. Validate Plugin Configs   3.Generate Default Configs   4. Exit");
+            	InteractiveChat.log("1. Check for Updates   2. Validate Plugin Configs   3.Generate Default Configs   4. Exit");
 
                 String input = IN.readLine();
                 switch (input) {
@@ -100,13 +102,13 @@ public class CMLMain {
         Version devBuild = new Version(devBuildVersion);
         int input;
         if (currentRelease.compareTo(spigotmc) < 0) { //update
-            System.out.println("There is a new version available! (" + currentDevBuild + ")\nLocal version: " + localPluginVersion + "");
-            System.out.println("You can download a new build at: https://ci.loohpjames.com/job/InteractiveChat/");
+        	InteractiveChat.log("There is a new version available! (" + currentDevBuild + ")\nLocal version: " + localPluginVersion + "");
+        	InteractiveChat.log("You can download a new build at: https://ci.loohpjames.com/job/InteractiveChat/");
         } else if (currentDevBuild.compareTo(devBuild) < 0) { //dev build update
-            System.out.println("There is a new DEV build available! (" + currentDevBuild + ")\nLocal version: " + localPluginVersion);
-            System.out.println("You can download a new build at: https://ci.loohpjames.com/job/InteractiveChat/");
+        	InteractiveChat.log("There is a new DEV build available! (" + currentDevBuild + ")\nLocal version: " + localPluginVersion);
+        	InteractiveChat.log("You can download a new build at: https://ci.loohpjames.com/job/InteractiveChat/");
         } else { //latest
-            System.out.println("You are already running the latest version! (" + localPluginVersion + ")");
+        	InteractiveChat.log("You are already running the latest version! (" + localPluginVersion + ")");
         }
     }
 
@@ -115,7 +117,7 @@ public class CMLMain {
         if (!folder.exists() || !folder.isDirectory()) {
             folder = new File("InteractiveChatBungee");
             if (!folder.exists() || !folder.isDirectory()) {
-                System.out.println("Error: Plugin folder not found");
+            	InteractiveChat.log("Error: Plugin folder not found");
                 return;
             }
         }
@@ -144,7 +146,7 @@ public class CMLMain {
             }
         }
         message.append("\nNote that a valid config doesn't mean REGEX are valid.");
-        System.out.println(message);
+        InteractiveChat.log(message.toString());
     }
 
     protected static List<String> validateConfigurationSection(String currentPath, ConfigurationSection section) {
@@ -168,8 +170,8 @@ public class CMLMain {
     }
 
     protected static void generateDefaultConfigs() throws IOException {
-        System.out.println("Generate configs for...");
-        System.out.println("1. Spigot (Backend)   2. Bungeecord (Proxy)");
+    	InteractiveChat.log("Generate configs for...");
+    	InteractiveChat.log("1. Spigot (Backend)   2. Bungeecord (Proxy)");
         String input = IN.readLine();
         File folder = null;
         if (input.equals("1")) {
@@ -185,7 +187,7 @@ public class CMLMain {
             FileUtils.copy(CMLMain.class.getClassLoader().getResourceAsStream("config_proxy.yml"), new File(folder, "bungeeconfig.yml"));
         }
         if (folder != null) {
-            System.out.println("Files saved at: " + folder.getAbsolutePath());
+            InteractiveChat.log("Files saved at: " + folder.getAbsolutePath());
         }
     }
 

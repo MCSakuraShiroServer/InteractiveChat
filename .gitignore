@@ -81,6 +81,11 @@ ehthumbs_vista.db
 # Folder config file
 [Dd]esktop.ini
 
+# Eclipse files
+.classpath
+.project
+.settings/
+
 # Recycle Bin used on file shares
 $RECYCLE.BIN/
 
@@ -110,3 +115,4 @@ buildNumber.properties
 
 # Common working directory
 run/
+/bin/

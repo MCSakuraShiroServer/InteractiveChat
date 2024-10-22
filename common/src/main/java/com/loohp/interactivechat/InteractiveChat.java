@@ -708,5 +708,11 @@ public class InteractiveChat extends JavaPlugin {
             mapDisplay.cleanUp();
         }, 0, 1200);
     }
+    
+    public static void log(String message) {
+    	
+    	plugin.getLogger().info(message);
+    	
+    }
 
 }
